@@ -74,7 +74,7 @@
         {% if books %}
         <ul class="list-group">
         {% for book in books %}
-        <li>{{ book.name }}</li>
+        <li><a href="{% url 'panda:show_book' book.slug %}">{{ book.name }}</a></li>
         {% endfor %}
         </ul>
         {% else %}
