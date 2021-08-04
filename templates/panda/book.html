@@ -1,0 +1,14 @@
+{% extends 'panda/base.html' %}
+{% load staticfiles %}
+
+{% block main_block %} 
+    <div class="container-fluid">
+        {{book.name}}
+    </div>      
+    <div class="container-fluid">
+        {{book.description}}
+    </div>
+    <div class="container-fluid">
+        {{book.likes}}
+    </div>
+{% endblock %}

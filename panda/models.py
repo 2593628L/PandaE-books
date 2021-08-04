@@ -39,6 +39,10 @@ class Book(models.Model):
         else:
             return '/media/book_images/rango.jpg'
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Book,self).save(*args,**kwargs)
+
     def __str__(self):
         return self.name
 

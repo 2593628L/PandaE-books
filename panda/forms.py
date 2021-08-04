@@ -16,6 +16,7 @@ class BookForm(forms.ModelForm):
     TITLE_MAX_SIZE = 128
     name = forms.CharField(max_length=TITLE_MAX_SIZE,help_text="please enter the book name")
     views = forms.IntegerField(widget=forms.HiddenInput(),initial=0)
+    slug = forms.CharField(widget=forms.HiddenInput(),required=False)
     # image = forms.ImageField()
     likes = forms.IntegerField(widget=forms.HiddenInput(),initial=0)
     rating = forms.FloatField(widget=forms.HiddenInput(),initial=0.0)

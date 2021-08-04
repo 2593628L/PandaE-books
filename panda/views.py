@@ -26,6 +26,18 @@ def show_category(request,category_name_slug):
         context_dict['books'] = None
     return render(request, 'panda/category.html', context=context_dict)
 
+def show_book(request,book_name_slug):
+    context_dict={}
+    try:
+        book = Book.objects.get(slug=book_name_slug)
+        context_dict['book'] = book
+
+    except Book.DoesNotExist:
+
+        context_dict['book'] = None
+    return render(request, 'panda/book.html', context=context_dict)
+
+
 def add_category(request):
     form = CategoryForm()
     if request.method == 'POST':

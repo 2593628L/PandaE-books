@@ -9,7 +9,7 @@
     {% if books %}
     {% for book in books %}
         <div >
-            <a class="nav-link" href="{% url 'panda:homepage' %}">{{book.name}}</a>
+            <a class="nav-link" href="{% url 'panda:show_book' book.slug %}">{{book.name}}</a>
             <p>{{book.description}}</p>
         </div>
     {% endfor %}

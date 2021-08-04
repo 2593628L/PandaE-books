@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'panda',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +104,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+REGISTRATION_OPEN = True
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = 'panda:homepage'
+LOGIN_URL = 'auth_login'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
