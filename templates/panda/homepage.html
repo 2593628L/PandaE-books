@@ -2,13 +2,14 @@
 {% load staticfiles %}
 
 {% block main_block %} 
-<div class="container-fluid" name="categories">
+<div class="container-fluid">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       {% if categories %}
     
       {% for category in categories %}<ul class="navbar-nav mr-auto">
-      <a class="nav-link" href="{% url 'panda:homepage' %}">{{category.name}}</a></ul>
+        <a class="nav-link" href="{% url 'panda:show_category' category.slug %}">{{ category.name }}</a></ul>
+      <!-- <a class="nav-link" href="{% url 'panda:homepage' %}">{{category.name}}</a></ul> -->
       {% endfor %}
       {% endif %}       
   
@@ -25,7 +26,7 @@
         {% if categories %}
         <ul class="list-group">
         {% for category in categories %}
-        <li>{{ category.name }}</li>
+        <li class="list-group-item"><a href="{% url 'panda:show_category' category.slug %}">{{ category.name }}</a></li>
         {% endfor %}
         </ul>
         {% else %}

@@ -10,7 +10,7 @@ class Category(models.Model):
     name = models.CharField(max_length=MAX_LENGTH,unique=True)
     likes = models.IntegerField(default=0)
     Sdescription =models.CharField(max_length=MAX_LENGTH)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True,blank=True)
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Category,self).save(*args,**kwargs)
@@ -26,7 +26,7 @@ class Book(models.Model):
     TITLE_MAX_SIZE = 128
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=TITLE_MAX_SIZE)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True,blank=True)
     views = models.IntegerField(default=0)
     image = models.ImageField(verbose_name=name,upload_to='book_images',blank = True)
     likes = models.IntegerField(default=0)

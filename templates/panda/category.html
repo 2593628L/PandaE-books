@@ -1,0 +1,18 @@
+{% extends 'panda/base.html' %}
+{% load staticfiles %}
+
+{% block main_block %} 
+    <div class="container-fluid">
+        {{category.name}}
+    </div>
+
+    {% if books %}
+    {% for book in books %}
+        <div >
+            <a class="nav-link" href="{% url 'panda:homepage' %}">{{book.name}}</a>
+            <p>{{book.description}}</p>
+        </div>
+    {% endfor %}
+    {% endif %}       
+
+{% endblock %}
