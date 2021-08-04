@@ -1,4 +1,5 @@
 from typing import ChainMap
+
 from django.db import models
 from django.db.models.fields import CharField, Field
 from django.template.defaultfilters import slugify
@@ -28,7 +29,7 @@ class Book(models.Model):
     name = models.CharField(max_length=TITLE_MAX_SIZE)
     slug = models.SlugField(unique=True,blank=True)
     views = models.IntegerField(default=0)
-    image = models.ImageField(verbose_name=name,upload_to='book_images',blank = True)
+    image = models.ImageField(upload_to='book_images',blank = True)
     likes = models.IntegerField(default=0)
     rating = models.FloatField(default=0.0)
     description = models.CharField(max_length=500)

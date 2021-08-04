@@ -15,9 +15,12 @@ class CategoryForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     TITLE_MAX_SIZE = 128
     name = forms.CharField(max_length=TITLE_MAX_SIZE,help_text="please enter the book name")
-    slug = forms.SlugField(widget=forms.HiddenInput(),required=False)
-    views = forms.IntegerField(default=0)
-    image = forms.ImageField(verbose_name=name,upload_to='book_images',blank = True)
-    likes = forms.IntegerField(default=0)
-    rating = forms.FloatField(default=0.0)
-    description = forms.CharField(max_length=500)
+    views = forms.IntegerField(widget=forms.HiddenInput(),initial=0)
+    # image = forms.ImageField()
+    likes = forms.IntegerField(widget=forms.HiddenInput(),initial=0)
+    rating = forms.FloatField(widget=forms.HiddenInput(),initial=0.0)
+    description = forms.CharField(max_length=200,help_text="please enter the description")
+
+    class Meta:
+        model = Book
+        exclude=('category',)

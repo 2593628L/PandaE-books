@@ -5,7 +5,7 @@
     <div class="container-fluid">
         {{category.name}}
     </div>
-
+    <a href="{% url 'panda:add_book' category.slug %}">Add Page</a> <br />
     {% if books %}
     {% for book in books %}
         <div >

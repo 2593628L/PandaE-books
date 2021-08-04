@@ -1,6 +1,9 @@
+from panda.forms import CategoryForm,BookForm
 from panda.models import Category,Book
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.shortcuts import redirect
+from django.urls import reverse
 
 # Create your views here.
 def homepage(request):
@@ -22,3 +25,41 @@ def show_category(request,category_name_slug):
         context_dict['category'] = None
         context_dict['books'] = None
     return render(request, 'panda/category.html', context=context_dict)
+
+def add_category(request):
+    form = CategoryForm()
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('homepage')
+    return render(request, 'panda/addCategory.html',{'form':form})
+
+def add_book(request, category_name_slug):
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+    except:
+        category = None
+    
+    # You cannot add a page to a Category that does not exist... DM
+    if category is None:
+        return redirect(reverse('panda:homepage'))
+
+    form = BookForm()
+
+    if request.method == 'POST':
+        form = BookForm(request.POST)
+
+        if form.is_valid():
+            if category:
+                book = form.save(commit=False)
+                book.category = category
+                book.views = 0
+                book.save()
+
+                return redirect(reverse('panda:show_category', kwargs={'category_name_slug': category_name_slug}))
+        else:
+            print(form.errors)  # This could be better done; for the purposes of TwD, this is fine. DM.
+    
+    context_dict = {'form': form, 'category': category}
+    return render(request, 'panda/add_book.html', context=context_dict)
