@@ -5,10 +5,13 @@ from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
+from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 # Create your views here.
+
 def homepage(request):
     context_dict ={}
     category_list = Category.objects.order_by('-likes')[:5]
@@ -55,8 +58,7 @@ def register_profile(request):
     context_dict = {'form':form}
     return render(request,'panda/profile_registration.html',context_dict)
 
-def profile(request):
-    return 
+
 
 def add_category(request):
     form = CategoryForm()
@@ -94,17 +96,41 @@ def add_book(request, category_name_slug):
     context_dict = {'form': form, 'category': category}
     return render(request, 'panda/add_book.html', context=context_dict)
 
-    # def register_profile(request):
-    # form = UserProfileForm()
-    # if request.method == 'POST':
-    #     form = UserProfileForm(request.POST,request.FILES)
-    #     if form.is_valid():
-    #         user_profile = form.save(commit=False)
-    #         user_profile.user = request.user
-    #         user_profile.save()
+class ProfileView(View):
+        def get_user_details(self,username):
+            try :
+                user =User.objects.get(username=username)
+            except User.DoesNotExist:
+                return None
+            user_profile = UserProfile.objects.get_or_create(user=user)[0]
+            form = UserProfileForm({'image':user_profile.picture})
 
-    #         return redirect(reverse('panda:homepage'))
-    #     else:
-    #         print(form.errors)
-    # context_dict = {'form':form}
-    # return render(request,'panda/profile_registration.html',context_dict)
+            return (user, user_profile, form) 
+        
+        @method_decorator(login_required)
+        def get(self, request, username):
+            try:
+                (user, user_profile,form) = self.get_user_details(username)
+            except TypeError:
+                return redirect(reverse('panda:homepage'))
+            context_dict = {'user_profile':user_profile,
+                            'selected_user':user,
+                            'form':form}
+            return render(request,'panda/profile.html',context_dict)
+        
+        @method_decorator(login_required)
+        def post(self,request,username):
+            try:
+                (user,user_profile,form) = self.get_user_details(username)
+            except TypeError:
+                return redirect(reverse('panda:homepage'))
+            form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+            if form.is_valid():
+                form.save(commit=True)
+                return redirect('panda:profile',user.username)
+            else:
+                print(form.errors)
+            context_dict = {'user_profile':user_profile,
+                            'selected_user':user,
+                            'form':form}
+            return render(request,'panda/profile.html',context_dict)
