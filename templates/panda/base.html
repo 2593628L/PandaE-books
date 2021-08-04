@@ -53,9 +53,14 @@
                       <a class="nav-link" href="{% url 'panda:homepage' %}">Category </a>
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li ><a href="#" style="color: azure;padding-right: 2px;">login</a></li>
+                    {% if user.is_authenticated %}
+                   <li><a style="color: azure;padding-right: 10px;">{{user.username}}</a></li>
+                    <li><a href="{% url 'auth_logout' %}?next={% url 'panda:homepage' %}" style="color: azure;">Logout</a></li> 
+                {% else %}
+                    <li ><a href="{% url 'auth_login' %}" style="color: azure;padding-right: 2px;">login</a></li>
                     <li><a href="#" style="color: azure;padding-right: 2px;">|</a></li>
-                    <li><a href="#"style="color: azure;padding-right: 2px;">sign up</a></li>
+                    <li><a href="{% url 'registration_register' %}"style="color: azure;padding-right: 2px;">sign up</a></li>
+                {% endif %}
                 </ul>
                     </div>
                   </nav>
