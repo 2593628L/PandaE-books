@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+    <head>
+        <!-- 必须的 meta 标签 -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        
+        <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+        <title>Panda E-Books - {% block title_block %}{% endblock %}</title>
+<style>
+  .navbar-nav{
+    padding-left: 100px;
+    font-size: large;
+  }
+  .back{
+    text-align: center;
+    position: absolute;
+    left:50%;
+    /* padding-left: 300px; */
+  }
+  .search{
+    
+    width: 500px;
+
+  }
+</style>
+      </head>
+      <body>
+            <header class ="container-fluid" id ="top">
+                {% block header_block %}
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand" href="{% url 'panda:homepage' %}">Panda E-Books</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                          <a class="nav-link" href="{% url 'panda:homepage' %}">Home </a>
+                      </ul>
+                      <ul class="navbar-nav mr-auto">
+                        <a class="nav-link" href="{% url 'panda:homepage' %}">About </a>
+                    </ul>
+                    <ul>
+                      <form >
+                          <input class="search" >
+                          <button class="btn" type="submit" style="color: beige;">Search</button>
+                      </form> </ul>     
+                    <ul class="navbar-nav mr-auto">
+                      <a class="nav-link" href="{% url 'panda:homepage' %}">Category </a>
+                  </ul>
+                  <ul class="navbar-nav mr-auto">
+                    <li ><a href="#" style="color: azure;padding-right: 2px;">login</a></li>
+                    <li><a href="#" style="color: azure;padding-right: 2px;">|</a></li>
+                    <li><a href="#"style="color: azure;padding-right: 2px;">sign up</a></li>
+                </ul>
+                    </div>
+                  </nav>
+                  {% endblock %}
+                  <div>
+                    {% block main_block %}{% endblock %}
+                  </div>
+                  <footer class="container-fluid">
+                    <footer>
+                      
+                      <p class ="back" >&copy; 2021 CodePandas </p><br/>
+                      <p class ="back"><a href="#top">Back to top</a></p>
+                  </footer>
+                  </footer>
+            </header>
+    
+        
+        
+
+
+        <script src="/static/bootstrap/js/jquery-3.3.1.slim.min.js" ></script>
+  
+        <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    
+
+      </body>
+    </html>
