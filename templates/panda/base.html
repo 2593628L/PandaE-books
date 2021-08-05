@@ -18,10 +18,13 @@
                 <div><a class="nav-link" href="{% url 'panda:homepage' %}">Home </a></div>
                 <div><a class="nav-link" href="{% url 'panda:homepage' %}">About </a></div>
                
-                <div><form class="topsearch">                
-                    <input placeholder="please enter the category to search">
-                    <button  type="submit" >Search</button>
-                </form></div>
+                <div>
+                    <form role="search" method="get" id="searchform" action="{% url 'panda:search' %}">
+                        {% csrf_token %}
+                        <input type="search" name="q" placeholder="Search" required>
+                        <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                    </form>
+            </div>
             
                     {% if user.is_authenticated %}
                     <div><a href="{% url 'panda:profile' user.username %}">{{user.username}}'profile</a></div>

@@ -1,7 +1,8 @@
-from typing import ChainMap
+from typing import ChainMap, Text
 
 from django.db import models
-from django.db.models.fields import CharField, Field
+from django.db.models.base import Model
+from django.db.models.fields import CharField, Field, TextField
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
@@ -20,13 +21,6 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
     def __str__(self):
         return self.name
-
-class Comments(models.Model):
-    MAX_SIZE = 128
-    # type = models.CharField(max_length=MAX_SIZE)
-    # Date = models.DateField()
-    # Rate = models.PositiveSmallIntegerField()
-    content = CharField(max_length=128)
 
 class Book(models.Model):
     TITLE_MAX_SIZE = 128
@@ -62,5 +56,23 @@ class Favorites(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     book = models.ManyToManyField(Book)
 
+class Comments(models.Model):
+    # user = models.ForeignKey(User,on_delete=models.CASCADE)
+    book = models.ForeignKey(Book,on_delete=models.CASCADE)
+    time = models.DateField(auto_now_add=True)
+    content = TextField()
+
+    def __str__(self):
+        return self.content
 
     
+class Post(models.Model):
+    # 标题
+    title = models.CharField(max_length=70)
+    # 正文
+    body = models.TextField()
+
+    # 其他属性
+
+    def __str__(self):
+        return self.title

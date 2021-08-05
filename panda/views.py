@@ -1,9 +1,9 @@
 from typing import Coroutine
 from django.forms import models
-from panda.models import UserProfile
+from panda.models import UserProfile,Post
 from panda.forms import CategoryForm,BookForm,UserProfileForm
 from panda.models import Category,Book,Comments
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse 
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -11,6 +11,7 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from panda.bing_search import run_query
 
 # Create your views here.
 
@@ -141,3 +142,16 @@ class ProfileView(View):
                             'selected_user':user,
                             'form':form}
             return render(request,'panda/profile.html',context_dict)
+
+
+def search(request):
+    q = request.GET.get('q')
+    error_msg = ''
+    context_dict ={}
+    try:
+        book = Book.objects.get(name=q)
+        context_dict['book'] = book
+        return render(request, 'panda/book.html', context=context_dict)
+    except Category.DoesNotExist:
+        return render(request, 'panda:homepage')
+    

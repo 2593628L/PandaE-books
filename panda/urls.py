@@ -12,4 +12,5 @@ urlpatterns =[
     path('register_profile/',views.register_profile,name="register_profile"),
     path('profile/<username>/',views.ProfileView.as_view(),name='profile'),
     path('category/<slug:category_name_slug>/add_book/', views.add_book, name='add_book'),
+    path('search/',views.search,name="search"),
 ]
