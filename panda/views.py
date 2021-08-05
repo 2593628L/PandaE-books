@@ -1,6 +1,8 @@
+from typing import Coroutine
+from django.forms import models
 from panda.models import UserProfile
 from panda.forms import CategoryForm,BookForm,UserProfileForm
-from panda.models import Category,Book
+from panda.models import Category,Book,Comments
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -14,8 +16,10 @@ from django.utils.decorators import method_decorator
 
 def homepage(request):
     context_dict ={}
+    all_category = Category.objects.order_by('-likes')
     category_list = Category.objects.order_by('-likes')[:5]
     book_list = Book.objects.order_by('-likes')[:5]
+    context_dict['all_category'] = all_category
     context_dict['categories'] = category_list
     context_dict['books'] = book_list
     return render(request,'panda/homepage.html',context=context_dict)
@@ -37,7 +41,10 @@ def show_book(request,book_name_slug):
     try:
         book = Book.objects.get(slug=book_name_slug)
         context_dict['book'] = book
-
+        if request.method == 'POST':
+            content = request.POST['content']
+            comments = Comments(content=content,)
+            comments.save()
     except Book.DoesNotExist:
 
         context_dict['book'] = None

@@ -20,4 +20,10 @@
             <button class="btn" type="submit" style="color: rgb(22, 22, 20);height: 100px; ">Submit</button>
         </form> </ul>  
     </div>
+
+    <form  method="post">
+        {% csrf_token %}
+        <p style="text-align:center">content：<input type="text" name="content" /></p>
+        <p style="text-align:center"><input type="submit" value="提交" />
+</form>
 {% endblock %}

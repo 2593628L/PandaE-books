@@ -21,7 +21,12 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-
+class Comments(models.Model):
+    MAX_SIZE = 128
+    # type = models.CharField(max_length=MAX_SIZE)
+    # Date = models.DateField()
+    # Rate = models.PositiveSmallIntegerField()
+    content = CharField(max_length=128)
 
 class Book(models.Model):
     TITLE_MAX_SIZE = 128
@@ -57,11 +62,5 @@ class Favorites(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     book = models.ManyToManyField(Book)
 
-class Comments(models.Model):
-    MAX_SIZE = 128
-    type = models.CharField(max_length=MAX_SIZE)
-    Date = models.DateField()
-    Rate = models.PositiveSmallIntegerField()
-    content = CharField(max_length=128)
-    user = models.ManyToManyField(User)
-    book = models.ManyToManyField(Book)
+
+    

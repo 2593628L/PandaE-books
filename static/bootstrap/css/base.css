@@ -1,0 +1,200 @@
+* {
+    box-sizing: border-box;
+  }
+   
+  body {
+    font-family: Arial;
+    padding: 10px;
+    background: #f1f1f1;
+  }
+   
+  /* 头部标题 */
+  .header {
+    padding: 30px;
+    text-align: center;
+    background: white;
+  }
+   
+  .header h1 {
+    font-size: 50px;
+  }
+   
+  /* 导航条 */
+  .topnav {
+    
+    overflow: hidden;
+    background-color: #333;
+    height: 100px;
+  }
+   
+  /* 导航条链接 */
+
+  .topnav a {
+    height: 100px;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 30px 50px; 
+    text-decoration: none;
+    font-size: 25px;
+  }
+
+  /* 链接颜色修改 */
+  .nav-link:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .topsearch{
+    float: left; 
+    padding: 30px 40px 20px;
+    font-size: 20px;
+  }
+
+  .topsearch input{
+      height: 40px;
+      width: 400px;
+      border: #ddd;
+      border-radius: 3px;
+  }
+  .topsearch button{
+    height: 40px;
+    width: 100px;
+    border: solid rgb(129, 123, 123);
+    border-radius: 5px;
+    background-color:#333;
+    }
+  /* 创建两列 */
+  /* Left column */
+  .leftcolumn, .rightcolumn {   
+    float: left;
+    width: 15%;
+  }
+   
+  /* 右侧栏 */
+  .mediumcolumn {
+    float: left;
+    width: 70%;
+    background-color: #f1f1f1;
+    
+  }
+  .l_column {   
+    float: left;
+    width: 30%;
+  }
+  .r_column {
+    
+    float: left;
+    width: 70%;
+    background-color: #f1f1f1;
+    font-size: 25px; 
+  }
+  .r_column a{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 50px;
+    width: 100%;
+    border: none;
+    font-size: 20px; 
+  }
+  .r_column a:hover{
+    background-color: #f1f1f1;
+  }
+  .view{
+    text-align: right;
+    height: 100px;
+    margin-bottom: 25px;
+  }
+  .description{
+    text-align: left;
+    height: 100px;
+    margin-bottom: 25px;
+  }
+
+  /* 图像部分 */
+  .fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+  }
+   
+  /* 文章卡片效果 */
+  .card {
+    background-color: white;
+    padding: 20px;
+    /* margin-top: 20px; */
+    text-align: center;
+    
+  }
+  .card a {
+    text-decoration: none;
+    color: #333;
+  }
+   
+  /* 列后面清除浮动 */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+   
+  /* 底部 */
+  .footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {   
+      width: 100%;
+      
+    }
+  }
+   
+  /* 响应式布局 -屏幕尺寸小于 400px 时，导航等布局改为上下布局 */
+  /* @media screen and (max-width: 800px) {
+    .topnav a {
+      float: none;
+      width: 100%;
+    } 
+  }*/
+
+.homepage {
+    
+    overflow: hidden;
+    background-color: rgb(80, 81, 83);
+    margin: auto;
+    height: 100px;
+  }
+  .homepage a {
+    height: 100px;
+    float: left;
+    width: 20%;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 30px ; 
+    text-decoration: none;
+    font-size: 25px;
+
+  }
+  .homepage a:hover {
+    background-color: rgb(80, 81, 83);
+    text-decoration: none;
+  }
+  .card-text{
+      font-family: Arial;
+      font-size: 20px;
+  }
+  .backtotop{
+    
+    text-decoration: none;
+    color: black;
+  }
+  .backtotop:hover {
+    background-color: #ddd;
+    color: black;
+    text-decoration: none;
+  }

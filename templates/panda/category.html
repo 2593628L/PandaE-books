@@ -2,16 +2,31 @@
 {% load staticfiles %}
 
 {% block main_block %} 
-    <div class="container-fluid">
-        {{category.name}}
+
+    <div class="card">
+        <h1>{{category.name}}</h1>    
     </div>
-    <a href="{% url 'panda:add_book' category.slug %}">Add Page</a> <br />
+    <div class="card">
+        <h2><a href="{% url 'panda:add_book' category.slug %}">Add Book</a></h2>
+    </div>
+    
     {% if books %}
     {% for book in books %}
-        <div >
-            <a class="nav-link" href="{% url 'panda:show_book' book.slug %}">{{book.name}}</a>
-            <p>{{book.description}}</p>
+    <div class="card">
+        <div class="row">
+            <div class="l_column">
+                <img src="{{book.photo_url}}" width="100%">
+            </div>
+            <div class="r_column">
+                <a class="nav-link" href="{% url 'panda:show_book' book.slug %}"><h3>{{book.name}}</h3></a>
+                
+                <div class="description"><p>Description:{{book.description}}</p></div>
+                
+                <div class="view"><p>views:{{book.views}} &nbsp; likes:{{book.likes}}</p> </div>          
+               
+            </div>
         </div>
+    </div>
     {% endfor %}
     {% endif %}       
 
