@@ -2,7 +2,7 @@ from typing import ChainMap, Text
 
 from django.db import models
 from django.db.models.base import Model
-from django.db.models.fields import CharField, Field, TextField
+from django.db.models.fields import AutoField, CharField, Field, TextField
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
@@ -57,10 +57,10 @@ class Favorites(models.Model):
     book = models.ManyToManyField(Book)
 
 class Comments(models.Model):
-    # user = models.ForeignKey(User,on_delete=models.CASCADE)
-    # book = models.ForeignKey(Book,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    book = models.ForeignKey(Book,on_delete=models.CASCADE)
     # time = models.DateField(auto_now_add=True)
-    content = TextField()
+    content = models.CharField(max_length=1000)
 
     def __str__(self):
         return self.content

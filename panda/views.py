@@ -1,7 +1,7 @@
 from typing import Coroutine
 from django.forms import models
 from panda.models import UserProfile,Post
-from panda.forms import CategoryForm,BookForm,UserProfileForm
+from panda.forms import CategoryForm,BookForm,UserProfileForm,CommentsForm
 from panda.models import Category,Book,Comments
 from django.http.response import HttpResponse 
 from django.shortcuts import render
@@ -11,7 +11,7 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from panda.bing_search import run_query
+
 
 # Create your views here.
 
@@ -164,4 +164,27 @@ def search(request):
     else:
         return render(request,'panda/results.html',context=context_dict)
 
-    
+def add_comments(request,bookname):
+
+    try:
+        book=Book.objects.get(name=bookname)
+    except:
+        book=None
+    if book is None:
+        return redirect(reverse('panda:homepage'))
+    user=User.objects.get(username=request.user)
+    form = CommentsForm()
+    if request.method=='POST':
+        form = CommentsForm(request.POST)
+        if form.is_valid():
+            if book:
+                comment=form.save(commit=False)
+                comment.book=book
+                comment.user=user
+                comment.save()
+                # return redirect(reverse('panda:show_book'),kwargs={'book_name_slug':book_name_slug})
+    context_dict={'form':form,'book':book}
+    # return render(request,'panda/add_comments.html',context=context_dict)
+ 
+
+
