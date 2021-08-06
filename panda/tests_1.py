@@ -1,4 +1,4 @@
-from panda.models import Category
+from panda.models import Book, Category
 from django.test import TestCase
 class CategoryMethodTests(TestCase): # Test Models
     def test_ensure_likes_are_positive(self):

@@ -14,6 +14,8 @@ class Category(models.Model):
     Sdescription =models.CharField(max_length=MAX_LENGTH)
     slug = models.SlugField(unique=True,blank=True)
     def save(self, *args, **kwargs):
+        if self.likes<0:
+            self.likes=0
         self.slug = slugify(self.name)
         super(Category,self).save(*args,**kwargs)
 
