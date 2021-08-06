@@ -50,12 +50,14 @@ def show_book(request,book_name_slug):
     try:
         book = Book.objects.get(slug=book_name_slug)
         context_dict['book'] = book
-        if request.method == 'POST':
-            content = request.POST['content']
-            comments = Comments(content=content,)
-            comments.save()
+        comments =Comments.objects.filter(book=book)
+        context_dict['comments']=comments
+        # if request.method == 'POST':
+        #     content = request.POST['content']
+        #     comments = Comments(content=content,)
+        #     comments.save()
     except Book.DoesNotExist:
-
+        context_dict['comments']=None
         context_dict['book'] = None
     return render(request, 'panda/book.html', context=context_dict)
 @login_required
@@ -164,10 +166,10 @@ def search(request):
     else:
         return render(request,'panda/results.html',context=context_dict)
 
-def add_comments(request,bookname):
+def add_comments(request,book_name_slug):
 
     try:
-        book=Book.objects.get(name=bookname)
+        book=Book.objects.get(slug=book_name_slug)
     except:
         book=None
     if book is None:
@@ -182,9 +184,10 @@ def add_comments(request,bookname):
                 comment.book=book
                 comment.user=user
                 comment.save()
-                # return redirect(reverse('panda:show_book'),kwargs={'book_name_slug':book_name_slug})
+                context_dict1={'book':book}
+                return render(request, 'panda/book.html', context_dict1)
     context_dict={'form':form,'book':book}
-    # return render(request,'panda/add_comments.html',context=context_dict)
+    return render(request,'panda/add_comments.html',context_dict)
  
 
 

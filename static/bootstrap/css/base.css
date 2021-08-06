@@ -236,21 +236,13 @@
     margin-top: 30px;
     border-radius: 5px;
   }
-  .comment{
-    margin-left: 50%;
-    width: 200px;
-    height: 50px;
-    font-size: 20px;
-    border-radius: 5px;
-  }
-  .comment-input{
-    margin-top: 20px;
-    width: 90%;
-    height: 40px;
-    font-size: 20px;
-    border-radius: 5px;
-    font-size: 20px;
-  }
+
   .Content{
     font-size: 30px;
+  }
+
+  .add_comment{
+    font-size: 30px;
+    border-radius: 5px;
+    padding-left: 50%;
   }

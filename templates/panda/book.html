@@ -30,12 +30,14 @@
 
 <div class="card">
     <h3>Comments</h3>
-     <p class="description1">1.&nbsp; Some books are to be cherished, loved, kept safe and to be encouraged to be read by everyone. Not all books should be subject to reviewed and critiqued. This is one such book. This book should be read everyone and every fore coming generation so as not to make the same mistakes that lead to tragedy.</p>
-    <p class="description1">2.&nbsp;The diary is a mirror of the tough times this young girl has gone through. As one goes through, the language improves. This is a translation, I guess and it has conveyed the pains, struggles and some love and happiness very nicely. While reading, I became part of her struggle and that describes how well it's been translated.</p>
-    <p class="description1">3.&nbsp;A thirteen year old can think quite deeply. The girl reveals the horror of what Jews had to go through during ww2. Sometimes it appears a rambling but that has to be ignored giving consideration for her age. The resolouteness of those people who helped the families in hiding is captured well. We can only hope that no one should undergo ordeals such as this but that remains an unfulfilled hope 72 years later.</p> 
-    <a href="{% url 'panda:add_comments' book.name %"}>add</a>
+{% if comments %}
+    {% for comment in comments %} 
+    <div class="description" style="font-size: 20px;">{{comment.user}}:</br>{{comment.content}}</br></div>       
+    {% endfor %}
+{% endif %}
 </div>
-
+  
+<a  href="{% url 'panda:add_comments' book.slug %}" style="padding-left: 45%;font-size: 25px;"><input class="readbook" type="button" value=" Add Comments"></a> 
 
 
      <div>
