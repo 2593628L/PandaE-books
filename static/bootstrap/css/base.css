@@ -3,7 +3,7 @@
   }
    
   body {
-    font-family: Arial;
+    font-family: MV Boli;
     padding: 10px;
     background: #f1f1f1;
   }
@@ -21,7 +21,6 @@
    
   /* 导航条 */
   .topnav {
-    
     overflow: hidden;
     background-color: #333;
     height: 100px;
@@ -32,12 +31,13 @@
   .topnav a {
     height: 100px;
     float: left;
+    width: 10%;
     display: block;
     color: #f2f2f2;
-    text-align: center;
-    padding: 30px 50px; 
+    text-align: center; 
     text-decoration: none;
-    font-size: 25px;
+    font-size: 23px;
+    padding-top: 30px;
   }
 
   /* 链接颜色修改 */
@@ -47,7 +47,7 @@
   }
   .topsearch{
     float: left; 
-    padding: 30px 40px 20px;
+    padding: 25px 40px 20px;
     font-size: 20px;
   }
 
@@ -55,7 +55,7 @@
       height: 40px;
       width: 400px;
       border: #ddd;
-      border-radius: 3px;
+      border-radius: 6px;
   }
   .topsearch button{
     height: 40px;
@@ -64,17 +64,17 @@
     border-radius: 5px;
     background-color:#333;
     }
-  /* 创建两列 */
-  /* Left column */
-  .leftcolumn, .rightcolumn {   
+
+
+ .leftcolumn, .rightcolumn {   
     float: left;
-    width: 15%;
+    width: 27%;
   }
    
   /* 右侧栏 */
   .mediumcolumn {
     float: left;
-    width: 70%;
+    width: 46%;
     background-color: #f1f1f1;
     
   }
@@ -92,7 +92,7 @@
   .r_column a{
     margin-top: 20px;
     margin-bottom: 20px;
-    height: 50px;
+    height: 60px;
     width: 100%;
     border: none;
     font-size: 20px; 
@@ -100,16 +100,8 @@
   .r_column a:hover{
     background-color: #f1f1f1;
   }
-  .view{
-    text-align: right;
-    height: 100px;
-    margin-bottom: 25px;
-  }
-  .description{
-    text-align: left;
-    height: 100px;
-    margin-bottom: 25px;
-  }
+  
+
 
   /* 图像部分 */
   .fakeimg {
@@ -171,13 +163,13 @@
   .homepage a {
     height: 100px;
     float: left;
-    width: 20%;
+    width: 16%;
     display: block;
     color: #f2f2f2;
     text-align: center;
     padding: 30px ; 
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
 
   }
   .homepage a:hover {
@@ -185,7 +177,7 @@
     text-decoration: none;
   }
   .card-text{
-      font-family: Arial;
+      font-family: MV Boli;
       font-size: 20px;
   }
   .backtotop{
@@ -197,4 +189,68 @@
     background-color: #ddd;
     color: black;
     text-decoration: none;
+  }
+  .profile{
+    float: left;
+    /* padding-top: 220px; */
+    size:20px 40px
+  }
+  .profile input{
+    float: left;
+    background-color: #333;
+    margin-left: 20px;
+    border-radius: 3px;
+    size:40px 60px;
+    font-size: 20px;
+    color:rgb(188, 190, 190);
+  }
+  .profileimage{
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  .profile-1{
+    float: left;
+    padding-top: 220px;
+    size:20px 40px;
+    font-size: 20px;
+  }
+  .barTitile{
+    font-family: Brush Script MT;
+  }
+  .views{
+    margin-top: 10%;
+  }
+  .description{
+    margin-top: 20px;
+    text-align: left;
+  }
+  .views1{
+    margin-top: 15%;
+  }
+  .description1{
+    margin-top: 18px;
+    text-align: left;
+    font-size: 20px;
+  }
+  .readbook{
+    margin-top: 30px;
+    border-radius: 5px;
+  }
+  .comment{
+    margin-left: 50%;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+  }
+  .comment-input{
+    margin-top: 20px;
+    width: 90%;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+  }
+  .Content{
+    font-size: 30px;
   }

@@ -31,7 +31,7 @@ class Book(models.Model):
     image = models.ImageField(upload_to='book_images',blank = True)
     likes = models.IntegerField(default=0)
     rating = models.FloatField(default=0.0)
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=1000)
     def photo_url(self):
         if self.image and hasattr(self.image, 'url'):
             return self.image.url
@@ -58,8 +58,8 @@ class Favorites(models.Model):
 
 class Comments(models.Model):
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
-    book = models.ForeignKey(Book,on_delete=models.CASCADE)
-    time = models.DateField(auto_now_add=True)
+    # book = models.ForeignKey(Book,on_delete=models.CASCADE)
+    # time = models.DateField(auto_now_add=True)
     content = TextField()
 
     def __str__(self):

@@ -9,31 +9,31 @@
         
         
         <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
-        <title>Panda E-Books - {% block title_block %}{% endblock %}</title>
+        <title>Panda E-Books  {% block title_block %}{% endblock %}</title>
         <link rel="stylesheet" href="/static/bootstrap/css/base.css">
     </head>
     <body>
             <div class="topnav">
-                <div><a  href="{% url 'panda:homepage' %}">Panda E-Books</a></div>
+                <div class="barTitile"><a  href="{% url 'panda:homepage' %}">Panda E-Books</a></div>
                 <div><a class="nav-link" href="{% url 'panda:homepage' %}">Home </a></div>
                 <div><a class="nav-link" href="{% url 'panda:homepage' %}">About </a></div>
                
-                <div>
+                <div class="topsearch"> 
                     <form role="search" method="get" id="searchform" action="{% url 'panda:search' %}">
                         {% csrf_token %}
                         <input type="search" name="q" placeholder="Search" required>
-                        <button type="submit"><span class="ion-ios-search-strong"></span></button>
+                        <button type="submit">search</button>
                     </form>
-            </div>
+                </div>
             
-                    {% if user.is_authenticated %}
-                    <div><a href="{% url 'panda:profile' user.username %}">{{user.username}}'profile</a></div>
-                    <div><a href="{% url 'panda:add_category' %}">Add Category</a></div>
-                    <div><a href="{% url 'auth_logout' %}?next={% url 'panda:homepage' %}" >Logout</a></div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'panda:profile' user.username %}">{{user.username}}'profile</a>
+                    <a href="{% url 'panda:add_category' %}">Add Category</a>
+                    <a href="{% url 'auth_logout' %}?next={% url 'panda:homepage' %}" >Logout</a>
                 {% else %}
-                <div><a  href="{% url 'auth_login' %}">login</a></div>
-                <div><a  href="{% url 'registration_register' %}">sign up</a></div>
-                {% endif %}  
+                <a  href="{% url 'auth_login' %}">login</a>
+                <a  href="{% url 'registration_register' %}">sign up</a>
+                {% endif %}
             </div>
             {% block main_block %}            
            {% endblock %}

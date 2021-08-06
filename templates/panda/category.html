@@ -20,9 +20,9 @@
             <div class="r_column">
                 <a class="nav-link" href="{% url 'panda:show_book' book.slug %}"><h3>{{book.name}}</h3></a>
                 
-                <div class="description"><p>Description:{{book.description}}</p></div>
-                
-                <div class="view"><p>views:{{book.views}} &nbsp; likes:{{book.likes}}</p> </div>          
+                <p class="description">Description:{{book.description}}</p>
+                <p class="views">views:{{book.views}} &nbsp; likes:{{book.likes}}</p>
+                <!-- <p class="views">views:{{book.views}} &nbsp; likes:{{book.likes}}</p>          -->
                
             </div>
         </div>

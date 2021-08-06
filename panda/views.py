@@ -17,12 +17,20 @@ from panda.bing_search import run_query
 
 def homepage(request):
     context_dict ={}
-    all_category = Category.objects.order_by('-likes')
+    all_category = Category.objects.order_by('-likes')[:8]
     category_list = Category.objects.order_by('-likes')[:5]
-    book_list = Book.objects.order_by('-likes')[:5]
+    book_list = Book.objects.order_by('-likes')[:8]
     context_dict['all_category'] = all_category
     context_dict['categories'] = category_list
     context_dict['books'] = book_list
+    context_dict['book1'] = book_list[0]
+    context_dict['book2'] = book_list[1]
+    context_dict['book3'] = book_list[2]
+    context_dict['book4'] = book_list[3]
+    context_dict['book5'] = book_list[4]
+    context_dict['book6'] = book_list[5]
+    context_dict['book7'] = book_list[6]
+    context_dict['book8'] = book_list[7]
     return render(request,'panda/homepage.html',context=context_dict)
 
 def show_category(request,category_name_slug):
@@ -148,10 +156,12 @@ def search(request):
     q = request.GET.get('q')
     error_msg = ''
     context_dict ={}
-    try:
-        book = Book.objects.get(name=q)
-        context_dict['book'] = book
+    book = Book.objects.filter(name=q)
+    context_dict['book'] = book[0]
+
+    if(book): 
         return render(request, 'panda/book.html', context=context_dict)
-    except Category.DoesNotExist:
-        return render(request, 'panda:homepage')
+    else:
+        return render(request,'panda/results.html',context=context_dict)
+
     

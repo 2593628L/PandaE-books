@@ -2,29 +2,46 @@
 {% load staticfiles %}
 
 {% block main_block %} 
-    <div class="container-fluid">
-        {{book.name}}
-    </div>      
-    <div class="container-fluid">
-        {{book.description}}
+<div class="card">
+    <h1>{{book.name}}</h1>
+    
+</div>
+<div class="card">
+    <div class="row">
+        <div class="l_column">
+            <img src="{{book.photo_url}}" width="100%">
+        </div>
+        <div class="r_column">     
+            <p class="description">Description:{{book.description}}</p>
+            <p class="views1">views:{{book.views}} &nbsp; likes:{{book.likes}} &nbsp; Rating:{{book.rating}}</p>    
+            {% if user.is_authenticated %}
+            <input class="readbook" type="button" value="read this book">  
+            <input class="readbook" type="button" value="add the book as favorite">   
+            {% endif %}
+        </div>
     </div>
-    <div class="container-fluid">
-        {{book.likes}}
-    </div>
-    <div class="container-fluid">
-        {{book.comments}}
-    </div>
-    <div class="container-fluid">
-        <form >
-            <input class="search" placeholder="comments" >
-            <button class="btn" type="submit" style="color: rgb(22, 22, 20);height: 100px; ">Submit</button>
-        </form> </ul>  
-    </div>
+</div>
+<!-- {% if book.comments %}
+<div class="card">
+    <p>Following are comments for this book</p>
+{{book.comments}}
+</div>
+{% endif %} -->
+
+<div class="card">
+    <h3>Comments</h3>
+     <p class="description1">1.&nbsp; Some books are to be cherished, loved, kept safe and to be encouraged to be read by everyone. Not all books should be subject to reviewed and critiqued. This is one such book. This book should be read everyone and every fore coming generation so as not to make the same mistakes that lead to tragedy.</p>
+    <p class="description1">2.&nbsp;The diary is a mirror of the tough times this young girl has gone through. As one goes through, the language improves. This is a translation, I guess and it has conveyed the pains, struggles and some love and happiness very nicely. While reading, I became part of her struggle and that describes how well it's been translated.</p>
+    <p class="description1">3.&nbsp;A thirteen year old can think quite deeply. The girl reveals the horror of what Jews had to go through during ww2. Sometimes it appears a rambling but that has to be ignored giving consideration for her age. The resolouteness of those people who helped the families in hiding is captured well. We can only hope that no one should undergo ordeals such as this but that remains an unfulfilled hope 72 years later.</p> 
+    
+</div>
+
 
     <form  method="post">
         {% csrf_token %}
-        <p style="text-align:center">content：<input type="text" name="content" /></p>
-        <p style="text-align:center"><input type="submit" value="提交" />
+        <p class="Content">content：<input class="comment-input"  type="text" name="content" /></p>
+        <p class="description1"><input class="comment" type="submit" value="add your comment" />
+            
 </form>
 
 <input name="starNum" id="starNum" type="hidden"/>
@@ -53,7 +70,7 @@
 
             <label for="rate_1_0_1_1" title="1 star"></label>
 
-            <button class="btn" type="submit" style="color: rgb(22, 22, 20);height: 100px; ">Submit</button>
+            <button type="button">Submit</button>
 
        </fieldset>
 
